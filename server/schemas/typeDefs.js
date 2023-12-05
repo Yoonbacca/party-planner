@@ -4,7 +4,6 @@ const typeDefs = `
     name: String
     email: String
     password: String
-    skills: [String]!
   }
 
   type Auth {
@@ -23,9 +22,7 @@ const typeDefs = `
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    addSkill(userId: ID!, skill: String!): User
     removeUser: User
-    removeSkill(skill: String!): User
   }
 `;
 
