@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FaEnvelope } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 
 const Login = () => {
@@ -14,8 +14,17 @@ const Login = () => {
                 <div className="input">
                     <div className="icon"><FaUserAlt /></div>
                     <input type="text" placeholder="Name" />
-                    
+                    <div className="icon"><FaEnvelope /></div>
+                    <input type="email" placeholder="Email" />
+                    <div className="icon"><FaLock /></div>
+                    <input type="password" placeholder="Password" />
                 </div>    
+            </div>
+            <div className="forgot-password">Lost Password? <span>Click Here!</span></div>
+            <div className="submit-container">
+                <div className="submit">Sign Up</div>
+                <div className="submit">Login</div>
+
             </div>
         </div>
     )
