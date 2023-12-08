@@ -3,7 +3,7 @@ import { FaEnvelope } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
-const SignupForm = () => {
+const SignupForm = ({ toggleLogin }) => {
 return (
     <div className="w-full lg:w-1/2 py-16 px-12">
     <h2  className="text-3xl mb-4">Sign up</h2>
@@ -37,7 +37,7 @@ value={{style: { position: 'absolute', color: 'lightgray', marginLeft: '4px' , m
       </IconContext.Provider>
       <h2 className="text-2xl my-4">Already have an account?</h2>
       <div className="mt-5">
-      <button className="w-full bg-white hover:bg-gray-100 border-2 border-purple-500 py-3 text-center text-purple-500 rounded">Login</button>
+      <button onClick={toggleLogin} className="w-full bg-white hover:bg-gray-100 border-2 border-purple-500 py-3 text-center text-purple-500 rounded">Login</button>
       </div>
     </form>
   </div>
