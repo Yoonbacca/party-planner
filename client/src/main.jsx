@@ -4,7 +4,7 @@ import Auth from "./utils/auth";
 import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'
-import Login from './components/login/Login.jsx'
+import LoginSignup from './components/login/LoginSignup.jsx';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: Auth.checkLoggedIn() ? <Dashboard /> : <Login />
+        element: Auth.checkLoggedIn() ? <Dashboard /> : <LoginSignup />
       }
     ]
   }
