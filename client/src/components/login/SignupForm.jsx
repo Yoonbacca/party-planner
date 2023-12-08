@@ -31,13 +31,13 @@ value={{style: { position: 'absolute', color: 'lightgray', marginLeft: '4px' , m
         <input type="password" placeholder="Confirm Password" className="border border-gray-400 py-1 pl-6 pr-2 w-full rounded"></input>
       </div>
       <div className="mt-5">
-        <button className="w-full bg-purple-500 py-3 text-center text-white rounded">Sign up</button>
+        <button className="w-full bg-purple-500 border-2 border-purple-500 hover:bg-purple-600 py-3 text-center text-white rounded">Sign up</button>
         <div className="text-xs">By signing up, you agree to the <a href="#" className="text-purple-500 font-semibold">Terms of Service</a> and <a href="#" className="text-purple-500 font-semibold">Party Policy</a>.</div>
       </div>
       </IconContext.Provider>
-      <h2  className="text-2xl my-4">Already have an account?</h2>
+      <h2 className="text-2xl my-4">Already have an account?</h2>
       <div className="mt-5">
-      <button className="w-full bg-white border-2 border-purple-500 py-3 text-center text-purple-500 rounded">Login</button>
+      <button className="w-full bg-white hover:bg-gray-100 border-2 border-purple-500 py-3 text-center text-purple-500 rounded">Login</button>
       </div>
     </form>
   </div>
