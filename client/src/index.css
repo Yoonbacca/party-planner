@@ -3,5 +3,7 @@
 @tailwind utilities;
 
 #left-form {
-    background-image: url("./assets/pineapple-party.jpg");
+    background-image: url("./assets/logo.svg");
+    background-size: 150px;
+    background-color: #FFFBDB;
 }
