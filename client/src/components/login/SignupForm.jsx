@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useMutation} from '@apollo/client';
 import { ADD_USER, LOGIN } from '../../utils/mutations'
-import { FaUserAlt } from "react-icons/fa";
-import { FaEnvelope } from "react-icons/fa";
-import { FaLock } from "react-icons/fa";
+import { FaUserAlt, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
+
 
 const SignupForm = ({ toggleLogin }) => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
@@ -37,7 +36,8 @@ const SignupForm = ({ toggleLogin }) => {
       console.log(err)
     }
   }
-    
+  const leftIconStyle = { position: 'absolute', color: 'lightgray', marginLeft: '4px' , marginTop: '8px' }
+
   return (
       <div className="w-full lg:w-1/2 py-16 px-12">
       <h2  className="text-3xl mb-4">Sign up</h2>
@@ -45,9 +45,7 @@ const SignupForm = ({ toggleLogin }) => {
         Create your account. A world of perfectly planned parties is at your fingertips.
       </p>
       <form onSubmit={handleFormSubmit}>
-      <IconContext.Provider
-  value={{style: { position: 'absolute', color: 'lightgray', marginLeft: '4px' , marginTop: '8px' }}}
-  >
+      <IconContext.Provider value={{style: leftIconStyle}}>
         <div className="mt-5">
             <FaUserAlt />
           <input type="text" name="name" placeholder="Name" autoComplete="given-name" onChange={handleInputChange} className="border border-gray-400 py-1 pl-6 pr-2 w-full rounded"></input>
