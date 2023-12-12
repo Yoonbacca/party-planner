@@ -5,6 +5,7 @@ import Field from './Field';
 import PassField from './PassField';
 import SubmitButton from './SubmitButton';
 import Auth from '../../utils/auth';
+import SwitchButton from './SwitchButton';
 
 
 const LoginForm = ({ toggleLogin }) => {
@@ -45,9 +46,7 @@ const LoginForm = ({ toggleLogin }) => {
         <PassField isConfirm={false} handleInputChange={handleInputChange} />
         <SubmitButton isLogin={true} />
         <h2 className="text-2xl my-4">Don't have an account?</h2>
-        <div className="mt-5">
-        <button onClick={toggleLogin} className="w-full bg-white hover:bg-gray-100 border-2 border-purple-500 py-3 text-center text-purple-500 rounded">Sign up</button>
-        </div>
+        <SwitchButton isLogin={true} toggleLogin={toggleLogin} />
       </form>
     </div>
   )
