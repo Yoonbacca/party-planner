@@ -6,7 +6,7 @@ import { IconContext } from "react-icons";
 
 const LoginForm = ({ toggleLogin }) => {
   const [passType, setPassType] = useState("password");
-  const [passIcon, setPassIcon] = useState("FaEye");
+  const [hidePass, setHidePass] = useState(true);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -26,15 +26,16 @@ const LoginForm = ({ toggleLogin }) => {
       console.log(err)
     }
   }
+
   function togglePass() {
-    if (type === "password") {
-        setType("text");
-        setIcon("FaEyeSlash");
+    if (passType === "password") {
+        setPassType("text");
     } else {
-        setType("password");
-        setIcon("FaEye");
+        setPassType("password");
     }
+    setHidePass(!hidePass);
 }
+
   return (
       <div className="w-full lg:w-1/2 py-16 px-12">
       <h2  className="text-3xl mb-4">Login</h2>
@@ -53,9 +54,9 @@ const LoginForm = ({ toggleLogin }) => {
           <span className="flex justify-around items-center">
             <FaLock color="lightgray" className="absolute ml-10 " />
           </span>
-          <input type="password" placeholder="Password" className="border border-gray-400 py-1 px-9 w-full rounded" />
+          <input type={passType} placeholder="Password" className="border border-gray-400 py-1 px-9 w-full rounded" />
           <span className="flex justify-around items-center" onClick={togglePass}>
-            <FaEye color="lightgray" className="absolute mr-10" />
+            {hidePass?(<FaEye color="lightgray" className="absolute mr-10" />):(<FaEyeSlash color="lightgray" className="absolute mr-10" />)}
           </span>
         </div>
 
