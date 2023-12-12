@@ -28,14 +28,10 @@ const SignupForm = ({ toggleLogin }) => {
       return
     } 
     try {
-      console.log("SignupForm/handleFormSubmit",formData)
       const addedUser = await addUser({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
+        variables: formData
       });
 
-      console.log("SignupForm/handleFormSubmit",addedUser)
       const { token, user } = addedUser.data.addUser;
     } catch(err) {
       console.error(err)
