@@ -13,5 +13,4 @@ const Field = ({ inputType, handleInputChange }) => {
     )
 }
 
-
 export default Field;
