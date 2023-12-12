@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useMutation} from '@apollo/client';
 import { ADD_USER, LOGIN } from '../../utils/mutations'
 import { FaUserAlt, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import Auth from '../../utils/auth';
 
 
 const SignupForm = ({ toggleLogin }) => {
@@ -16,13 +17,10 @@ const SignupForm = ({ toggleLogin }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const checkPasswords = () => {
-    return (formData.password === formData.confirmPassword)
-  }
-
+  
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    
     if (!checkPasswords()) {
       alert("Passwords do not match")
       return
@@ -31,22 +29,28 @@ const SignupForm = ({ toggleLogin }) => {
       const addedUser = await addUser({
         variables: formData
       });
-
+      
       const { token, user } = addedUser.data.addUser;
+      console.log(user);
+      Auth.login(token);
+
     } catch(err) {
       console.error(err)
     }
-
   }
-
+  
   function togglePass() {
     if (passType === "password") {
-        setPassType("text");
+      setPassType("text");
     } else {
-        setPassType("password");
+      setPassType("password");
     }
     setHidePass(!hidePass);
-}
+  }
+  
+  const checkPasswords = () => {
+    return (formData.password === formData.confirmPassword)
+  }
 
   return (
       <div className="w-full lg:w-1/2 py-16 px-12">

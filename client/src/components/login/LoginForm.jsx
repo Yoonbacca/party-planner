@@ -2,25 +2,33 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../utils/mutations'
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash} from "react-icons/fa";
+import Auth from '../../utils/auth';
+
 
 const LoginForm = ({ toggleLogin }) => {
   const [passType, setPassType] = useState("password");
   const [hidePass, setHidePass] = useState(true);
+  const [formData, setFormData] = useState({email: '', password: ''});
+
+  const [login, { error }] = useMutation(LOGIN);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
     try {
-      const addedUser = await addUser({
-        variables: userFormData
+      const userLogin = await login({
+        variables: formData
       });
-      console.log(addedUser)
-      // const { token, user } = addedUser.data.addUser;
-      // console.log(user);
-      // Auth.login(token);
+
+      const { token, user } = userLogin.data.login;
+      console.log(user);
+      Auth.login(token);
+      
     } catch(err) {
       console.log(err)
     }
@@ -47,13 +55,13 @@ const LoginForm = ({ toggleLogin }) => {
           <span className="flex justify-around items-center">
             <FaEnvelope color="lightgray" className="absolute ml-10 " />
           </span>
-          <input type="text" placeholder="Email" className="border border-gray-400 py-1 px-9 w-full rounded"></input>
+          <input type="text" name="email" placeholder="Email" onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded"></input>
         </div>
         <div className="mt-5 flex">
           <span className="flex justify-around items-center">
             <FaLock color="lightgray" className="absolute ml-10 " />
           </span>
-          <input type={passType} placeholder="Password" className="border border-gray-400 py-1 px-9 w-full rounded" />
+          <input type={passType} name="password" placeholder="Password" onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded" />
           <span className="flex justify-around items-center cursor-pointer" onClick={togglePass}>
             {hidePass?(<FaEye color="lightgray" className="absolute mr-10" />):(<FaEyeSlash color="gray" className="absolute mr-10" />)}
           </span>
