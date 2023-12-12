@@ -7,13 +7,13 @@ import { FaUserAlt, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa
 const SignupForm = ({ toggleLogin }) => {
   const [passType, setPassType] = useState("password");
   const [hidePass, setHidePass] = useState(true);
-
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
+
+  const [addUser, {error}] = useMutation(ADD_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-    console.log(formData)
   };
 
   const checkPasswords = () => {
@@ -22,21 +22,25 @@ const SignupForm = ({ toggleLogin }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
     if (!checkPasswords()) {
       alert("Passwords do not match")
       return
-    }
+    } 
     try {
+      console.log("SignupForm/handleFormSubmit",formData)
       const addedUser = await addUser({
-        variables: formData
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
       });
-      console.log(addedUser)
-      // const { token, user } = addedUser.data.addUser;
-      // console.log(user);
-      // Auth.login(token);
+
+      console.log("SignupForm/handleFormSubmit",addedUser)
+      const { token, user } = addedUser.data.addUser;
     } catch(err) {
-      console.log(err)
+      console.error(err)
     }
+
   }
 
   function togglePass() {
@@ -71,7 +75,7 @@ const SignupForm = ({ toggleLogin }) => {
           <span className="flex justify-around items-center">
             <FaLock color="lightgray" className="absolute ml-10 " />
           </span>
-          <input type={passType} placeholder="Password" className="border border-gray-400 py-1 px-9 w-full rounded" />
+          <input type={passType} name="password" placeholder="Password" onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded" />
           <span className="flex justify-around items-center cursor-pointer" onClick={togglePass}>
             {hidePass?(<FaEye color="lightgray" className="absolute mr-10" />):(<FaEyeSlash color="gray" className="absolute mr-10" />)}
           </span>
@@ -80,7 +84,7 @@ const SignupForm = ({ toggleLogin }) => {
           <span className="flex justify-around items-center">
             <FaLock color="lightgray" className="absolute ml-10 " />
           </span>
-          <input type={passType} placeholder="Password" className="border border-gray-400 py-1 px-9 w-full rounded" />
+          <input type={passType} name="confirmPassword" placeholder="Password" onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded" />
           <span className="flex justify-around items-center cursor-pointer" onClick={togglePass}>
             {hidePass?(<FaEye color="lightgray" className="absolute mr-10" />):(<FaEyeSlash color="gray" className="absolute mr-10" />)}
           </span>
