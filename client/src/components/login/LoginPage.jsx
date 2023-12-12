@@ -1,7 +1,6 @@
 import { useState } from "react";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
-import './LoginPage.css';
 
 const LoginPage = () => {
     const [login, setLogin] = useState(false);

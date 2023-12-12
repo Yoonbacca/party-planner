@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../utils/mutations'
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash} from "react-icons/fa";
+import Field from './Field';
+import PassField from './PassField';
 import Auth from '../../utils/auth';
 
 
@@ -50,13 +51,7 @@ const LoginForm = ({ toggleLogin }) => {
         A world of perfectly planned parties is at your fingertips.
       </p>
       <form onSubmit={handleFormSubmit}>
-
-        <div className="mt-5 flex">
-          <span className="flex justify-around items-center">
-            <FaEnvelope color="lightgray" className="absolute ml-10 " />
-          </span>
-          <input type="text" name="email" placeholder="Email" onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded"></input>
-        </div>
+        <Field inputType={"Name"} />
         <div className="mt-5 flex">
           <span className="flex justify-around items-center">
             <FaLock color="lightgray" className="absolute ml-10 " />

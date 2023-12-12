@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useMutation} from '@apollo/client';
 import { ADD_USER, LOGIN } from '../../utils/mutations'
-import { FaUserAlt, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import Field from './Field';
+import PassField from './PassField';
 import Auth from '../../utils/auth';
 
 
@@ -15,8 +16,8 @@ const SignupForm = ({ toggleLogin }) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+    console.log(formData);
   };
-
   
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -59,36 +60,10 @@ const SignupForm = ({ toggleLogin }) => {
         Create your account. A world of perfectly planned parties is at your fingertips.
       </p>
       <form onSubmit={handleFormSubmit}>
-        <div className="mt-5 flex">
-          <span className="flex justify-around items-center">
-            <FaUserAlt color="lightgray" className="absolute ml-10" />
-          </span>
-          <input type="text" name="name" placeholder="Name" autoComplete="given-name" onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded"></input>
-        </div>
-        <div className="mt-5 flex">
-          <span className="flex justify-around items-center">
-            <FaEnvelope color="lightgray" className="absolute ml-10" />
-          </span>
-          <input type="text" name="email" placeholder="Email" autoComplete="email"  onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded"></input>
-        </div>
-        <div className="mt-5 flex">
-          <span className="flex justify-around items-center">
-            <FaLock color="lightgray" className="absolute ml-10 " />
-          </span>
-          <input type={passType} name="password" placeholder="Password" onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded" />
-          <span className="flex justify-around items-center cursor-pointer" onClick={togglePass}>
-            {hidePass?(<FaEye color="lightgray" className="absolute mr-10" />):(<FaEyeSlash color="gray" className="absolute mr-10" />)}
-          </span>
-        </div>
-        <div className="mt-5 flex">
-          <span className="flex justify-around items-center">
-            <FaLock color="lightgray" className="absolute ml-10 " />
-          </span>
-          <input type={passType} name="confirmPassword" placeholder="Password" onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded" />
-          <span className="flex justify-around items-center cursor-pointer" onClick={togglePass}>
-            {hidePass?(<FaEye color="lightgray" className="absolute mr-10" />):(<FaEyeSlash color="gray" className="absolute mr-10" />)}
-          </span>
-        </div>
+        <Field inputType={"Name"} handleInputChange={handleInputChange} />
+        <Field inputType={"Email"} handleInputChange={handleInputChange} />
+        <PassField confirmPass={false} handleInputChange={handleInputChange} />
+        <PassField confirmPass={true} handleInputChange={handleInputChange} />
         <div className="mt-5">
           <button className="w-full bg-purple-500 border-2 border-purple-500 hover:bg-purple-600 py-3 text-center text-white rounded">Sign up</button>
           <div className="text-xs">By signing up, you agree to the <a href="#" className="text-purple-500 font-semibold">Terms of Service</a> and <a href="#" className="text-purple-500 font-semibold">Party Policy</a>.</div>
