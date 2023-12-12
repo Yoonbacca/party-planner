@@ -7,8 +7,6 @@ import Auth from '../../utils/auth';
 
 
 const LoginForm = ({ toggleLogin }) => {
-  const [passType, setPassType] = useState("password");
-  const [hidePass, setHidePass] = useState(true);
   const [formData, setFormData] = useState({email: '', password: ''});
 
   const [login, { error }] = useMutation(LOGIN);
@@ -35,15 +33,6 @@ const LoginForm = ({ toggleLogin }) => {
     }
   }
 
-  function togglePass() {
-    if (passType === "password") {
-        setPassType("text");
-    } else {
-        setPassType("password");
-    }
-    setHidePass(!hidePass);
-}
-
   return (
       <div className="w-full lg:w-1/2 py-16 px-12">
       <h2  className="text-3xl mb-4">Login</h2>
@@ -52,16 +41,7 @@ const LoginForm = ({ toggleLogin }) => {
       </p>
       <form onSubmit={handleFormSubmit}>
         <Field inputType={"Name"} />
-        <div className="mt-5 flex">
-          <span className="flex justify-around items-center">
-            <FaLock color="lightgray" className="absolute ml-10 " />
-          </span>
-          <input type={passType} name="password" placeholder="Password" onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded" />
-          <span className="flex justify-around items-center cursor-pointer" onClick={togglePass}>
-            {hidePass?(<FaEye color="lightgray" className="absolute mr-10" />):(<FaEyeSlash color="gray" className="absolute mr-10" />)}
-          </span>
-        </div>
-
+        <PassField confirmPass={false} handleInputChange={handleInputChange} />
         <div className="mt-5">
           <button className="w-full bg-purple-500 border-2 border-purple-500 hover:bg-purple-600 py-3 text-center text-white rounded">Login</button>
         </div>

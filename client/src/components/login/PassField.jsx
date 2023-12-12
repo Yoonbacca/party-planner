@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const PassField = ({ confirmPass, handleInputChange }) => {
@@ -18,7 +19,7 @@ const PassField = ({ confirmPass, handleInputChange }) => {
         <span className="flex justify-around items-center">
           <FaLock color="lightgray" className="absolute ml-10 " />
         </span>
-        {confirm ? 
+        {confirmPass ? 
         (<input type={passType} name="confirmPassword" placeholder="Confirm Password" onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded" />) 
         : (<input type={passType} name="password" placeholder="Password" onChange={handleInputChange} className="border border-gray-400 py-1 px-9 w-full rounded" />)}
         <span className="flex justify-around items-center cursor-pointer" onClick={togglePass}>

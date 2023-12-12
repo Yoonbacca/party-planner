@@ -7,8 +7,6 @@ import Auth from '../../utils/auth';
 
 
 const SignupForm = ({ toggleLogin }) => {
-  const [passType, setPassType] = useState("password");
-  const [hidePass, setHidePass] = useState(true);
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
 
   const [addUser, {error}] = useMutation(ADD_USER);
@@ -38,15 +36,6 @@ const SignupForm = ({ toggleLogin }) => {
     } catch(err) {
       console.error(err)
     }
-  }
-  
-  function togglePass() {
-    if (passType === "password") {
-      setPassType("text");
-    } else {
-      setPassType("password");
-    }
-    setHidePass(!hidePass);
   }
   
   const checkPasswords = () => {
