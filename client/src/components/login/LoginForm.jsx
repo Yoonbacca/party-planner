@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../utils/mutations'
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash} from "react-icons/fa";
-import { IconContext } from "react-icons";
 
 const LoginForm = ({ toggleLogin }) => {
   const [passType, setPassType] = useState("password");
@@ -55,8 +54,8 @@ const LoginForm = ({ toggleLogin }) => {
             <FaLock color="lightgray" className="absolute ml-10 " />
           </span>
           <input type={passType} placeholder="Password" className="border border-gray-400 py-1 px-9 w-full rounded" />
-          <span className="flex justify-around items-center" onClick={togglePass}>
-            {hidePass?(<FaEye color="lightgray" className="absolute mr-10" />):(<FaEyeSlash color="lightgray" className="absolute mr-10" />)}
+          <span className="flex justify-around items-center cursor-pointer" onClick={togglePass}>
+            {hidePass?(<FaEye color="lightgray" className="absolute mr-10" />):(<FaEyeSlash color="gray" className="absolute mr-10" />)}
           </span>
         </div>
 
