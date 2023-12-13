@@ -1,4 +1,5 @@
 import ReCAPTCHA from "react-google-recaptcha";
+import { Modal } from 'flowbite-react';
 
 const SubmitButton = ({ isLogin }) => {
     const buttonText = isLogin ? "Login" : "Sign up";
