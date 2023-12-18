@@ -15,7 +15,7 @@ const SignupForm = ({ toggleLogin }) => {
   const [addUser, {error}] = useMutation(ADD_USER);
 
   const recaptchaRef = React.createRef();
-
+  console.log(recaptchaRef.current);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -30,7 +30,7 @@ const SignupForm = ({ toggleLogin }) => {
       return
     } 
 
-    if (recaptchaRef.current.getValue() === null) {
+    if (recaptchaRef.current === null || recaptchaRef.current.getValue() === "") {
       alert("Please verify you are not a robot")
       return
     }
