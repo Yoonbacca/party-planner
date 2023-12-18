@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from 'react';
 import { useMutation} from '@apollo/client';
 import { ADD_USER, LOGIN } from '../../utils/mutations'
@@ -13,6 +14,8 @@ const SignupForm = ({ toggleLogin }) => {
 
   const [addUser, {error}] = useMutation(ADD_USER);
 
+  const recaptchaRef = React.createRef();
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -26,6 +29,12 @@ const SignupForm = ({ toggleLogin }) => {
       alert("Passwords do not match")
       return
     } 
+
+    if (recaptchaRef.current.getValue() === null) {
+      alert("Please verify you are not a robot")
+      return
+    }
+
     try {
       const addedUser = await addUser({
         variables: formData
@@ -55,7 +64,7 @@ const SignupForm = ({ toggleLogin }) => {
         <Field inputType={"Email"} handleInputChange={handleInputChange} />
         <PassField isConfirm={false} handleInputChange={handleInputChange} />
         <PassField isConfirm={true} handleInputChange={handleInputChange} />
-        <SubmitButton isLogin={false} />
+        <SubmitButton isLogin={false} recaptchaRef={recaptchaRef} />
         <h2 className="text-2xl my-4">Already have an account?</h2>
         <SwitchButton isLogin={false} toggleLogin={toggleLogin} />
       </form>
