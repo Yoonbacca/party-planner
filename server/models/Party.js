@@ -17,6 +17,10 @@ const partySchema = new Schema(
       min: Date.now,
       required: true,
     },
+    time: {
+      type: String,
+      required: true,
+    },
     location: {
       type: String,
       required: true,
@@ -24,6 +28,7 @@ const partySchema = new Schema(
     host: {
       type: Schema.Types.ObjectId,
       ref: "User",
+      required: true,
     },
     guests: [{
       type: Schema.Types.ObjectId,

@@ -28,7 +28,7 @@ const userSchema = new Schema({
 }],
 });
 
-// Pre-save midddleware to create password before saving
+// Pre-save middleware to create password before saving
 userSchema.pre("save", async function (next) {
   // check to see if the password is new or modified before hashing
   if (this.isNew || this.isModified("password")) {
