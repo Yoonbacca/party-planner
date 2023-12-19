@@ -18,6 +18,14 @@ const userSchema = new Schema({
     required: true,
     minlength: 8,
   },
+  parties: [{
+    type: Schema.Types.ObjectId,
+    ref: "Party",
+}],
+  friends: [{
+    type: Schema.Types.ObjectId,
+    ref: "User",
+}],
 });
 
 // Pre-save midddleware to create password before saving
