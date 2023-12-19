@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 
-const subjectSchema = new Schema(
+const partySchema = new Schema(
   {
     name: {
       type: String,
@@ -12,13 +12,26 @@ const subjectSchema = new Schema(
       type: String,
       required: true,
     },
-    courses: [{
+    date: {
+      type: Date,
+      min: Date.now,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    host: {
       type: Schema.Types.ObjectId,
-      ref: "Course",
+      ref: "User",
+    },
+    guests: [{
+      type: Schema.Types.ObjectId,
+      ref: "User",
     }],
   },
 );
 
-const Subject = model('Subject', subjectSchema);
+const Party = model('Party', partySchema);
 
-module.exports = Subject;
+module.exports = Party;

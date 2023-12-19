@@ -1,7 +1,7 @@
 const typeDefs = `
   type User {
     _id: ID
-    name: String
+    username: String
     email: String
     password: String
   }
@@ -20,7 +20,7 @@ const typeDefs = `
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(name: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
     removeUser: User
   }
 `;

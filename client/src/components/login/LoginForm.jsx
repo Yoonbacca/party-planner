@@ -42,7 +42,7 @@ const LoginForm = ({ toggleLogin }) => {
         A world of perfectly planned parties is at your fingertips.
       </p>
       <form onSubmit={handleFormSubmit}>
-        <Field inputType={"Name"} />
+        <Field inputType={"Username"} />
         <PassField isConfirm={false} handleInputChange={handleInputChange} />
         <SubmitButton isLogin={true} />
         <h2 className="text-2xl my-4">Don't have an account?</h2>
