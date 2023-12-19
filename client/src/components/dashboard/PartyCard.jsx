@@ -7,7 +7,7 @@ const PartyCard = () => {
 
     return (
         <>
-        {partyPlanning ? (<PartyPlanner />) : (<PartyCTA setPartyPlanning={setPartyPlanning} />)}
+        {partyPlanning ? (<PartyPlanner setPartyPlanning={setPartyPlanning} />) : (<PartyCTA setPartyPlanning={setPartyPlanning} />)}
         </>
     )
 }

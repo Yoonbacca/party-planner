@@ -7,7 +7,7 @@ function Dashboard() {
     <div className="container m-auto">
       <PartyCard />
     </div>
-  )
+  );
 }
 
 export default Dashboard;
