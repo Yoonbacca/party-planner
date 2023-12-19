@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import PartyCTA from "./PartyCTA";
+import PartyCard from "./PartyCard"
 
 function Dashboard() {
 
   return (
     <div className="container m-auto">
-      <PartyCTA />
+      <PartyCard />
     </div>
   )
 }
