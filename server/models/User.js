@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema({
-  name: {
+  username: {
     type: String,
     required: true,
     trim: true,
@@ -18,9 +18,17 @@ const userSchema = new Schema({
     required: true,
     minlength: 8,
   },
+  parties: [{
+    type: Schema.Types.ObjectId,
+    ref: "Party",
+}],
+  friends: [{
+    type: Schema.Types.ObjectId,
+    ref: "User",
+}],
 });
 
-// Pre-save midddleware to create password before saving
+// Pre-save middleware to create password before saving
 userSchema.pre("save", async function (next) {
   // check to see if the password is new or modified before hashing
   if (this.isNew || this.isModified("password")) {

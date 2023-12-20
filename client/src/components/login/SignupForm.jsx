@@ -10,7 +10,7 @@ import Auth from '../../utils/auth';
 
 
 const SignupForm = ({ toggleLogin }) => {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
+  const [formData, setFormData] = useState({ username: '', email: '', password: '', confirmPassword: '' });
 
   const [addUser, {error}] = useMutation(ADD_USER);
 
@@ -60,7 +60,7 @@ const SignupForm = ({ toggleLogin }) => {
         Create your account. A world of perfectly planned parties is at your fingertips.
       </p>
       <form onSubmit={handleFormSubmit}>
-        <Field inputType={"Name"} handleInputChange={handleInputChange} />
+        <Field inputType={"Username"} handleInputChange={handleInputChange} />
         <Field inputType={"Email"} handleInputChange={handleInputChange} />
         <PassField isConfirm={false} handleInputChange={handleInputChange} />
         <PassField isConfirm={true} handleInputChange={handleInputChange} />
