@@ -27,6 +27,7 @@ const typeDefs = `
     users: [User]!
     user(userId: ID!): User
     me: User
+    party(partyId: ID!): Party
   }
 
   type Mutation {
