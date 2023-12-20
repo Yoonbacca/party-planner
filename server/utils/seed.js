@@ -14,7 +14,7 @@ db.once('open', async () => {
         const hashedPassword = await bcrypt.hash("password", 10);
 
         console.log('seed: Creating users...');
-        const users = await User.insertMany([
+        const userSeeds = await User.insertMany([
             {
                 username: "Timtom",
                 email: "timtom@tim.tom",
@@ -34,41 +34,45 @@ db.once('open', async () => {
         console.log('seed: Users created...');
 
         console.log('seed: Creating parties...');
-        const parties = await Party.insertMany([
+        const partySeeds = await Party.insertMany([
             {
                 name: "Tim's Party",
                 description: "A party for Tim",
                 location: "Tim's House",
-                host: users[0]._id,
-                guests: [users[1]._id, users[2]._id]
+                host: userSeeds[0]._id,
+                guests: [userSeeds[1]._id, userSeeds[2]._id]
             },
             {
                 name: "Lernantino's Party",
                 description: "A party for Lernantino",
                 location: "Lernantino's House",
-                host: users[1]._id,
-                guests: [users[0]._id, users[2]._id]
+                host: userSeeds[1]._id,
+                guests: [userSeeds[0]._id, userSeeds[2]._id]
             }
         ]);
         console.log('seed: Parties created...');
-
-        users.map(async (user) => {
-            console.log("userid",user._id)
-            await User.findOneAndUpdate(
+        const updateUsersParties = userSeeds.map(async (user) => {
+            return User.findOneAndUpdate(
                 { 
                     _id: user._id
                 },
                 { 
                     $push: { 
-                        parties: parties.filter((party) => 
-                            party.host.includes(user._id)
+                        parties: partySeeds.filter((party) => 
+                            party.host.toString() === user._id.toString()
+                        ),
+                        friends: userSeeds.filter((friend) => 
+                            friend._id.toString() !== user._id.toString()
                         ),
                     }, 
                 },
-            );
+                { new: true }
+            )
         });
 
+        await Promise.all(updateUsersParties);
 
+        console.log('seed: Updated users with parties and friends...');
         console.log('seed: Done!');
         process.exit(0);
     } catch (err) { 
