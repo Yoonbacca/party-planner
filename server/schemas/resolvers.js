@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Party } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -49,7 +49,7 @@ const resolvers = {
       throw AuthenticationError;
     },
     addParty: async (parent, { name, description, dateTime, location, host, guests }) => {
-      const party = await Project.create({ name, description, dateTime, location, host, guests });
+      const party = await Party.create({ name, description, dateTime, location, host, guests });
       return party;
     }
   },
