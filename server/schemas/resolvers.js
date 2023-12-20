@@ -20,12 +20,6 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
-      const token = signToken(user);
-
-      return { token, user };
-    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -42,14 +36,22 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    // Set up mutation so a logged in user can only remove their user and no one else's
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+
+      return { token, user };
+    },
     removeUser: async (parent, args, context) => {
       if (context.user) {
         return User.findOneAndDelete({ _id: context.user._id });
       }
       throw AuthenticationError;
     },
-    // Make it so a logged in user can only remove a skill from their own user
+    addParty: async (parent, { name, description, dateTime, location, host, guests }) => {
+      const party = await Project.create({ name, description, dateTime, location, host, guests });
+      return party;
+    }
   },
 };
 
