@@ -27,6 +27,7 @@ const typeDefs = `
     users: [User]!
     user(userId: ID!): User
     me: User
+    parties(host: ID!): [Party]!
     party(partyId: ID!): Party
   }
 
@@ -34,7 +35,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     removeUser: User
-    addParty(name: String!, description: String!, dateTime: String!, location: String!, host: String!, guests: [String]): Party
+    addParty(name: String!, description: String, dateTime: String, location: String!, host: ID!, guests: [ID]): Party
   }
 `;
 
