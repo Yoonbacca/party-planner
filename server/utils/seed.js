@@ -39,15 +39,15 @@ db.once('open', async () => {
                 name: "Tim's Party",
                 description: "A party for Tim",
                 location: "Tim's House",
-                host: userSeeds[0]._id,
-                guests: [userSeeds[1]._id, userSeeds[2]._id]
+                host: userSeeds[0],
+                guests: [userSeeds[1], userSeeds[2]]
             },
             {
                 name: "Lernantino's Party",
                 description: "A party for Lernantino",
                 location: "Lernantino's House",
-                host: userSeeds[1]._id,
-                guests: [userSeeds[0]._id, userSeeds[2]._id]
+                host: userSeeds[1],
+                guests: [userSeeds[0], userSeeds[2]]
             }
         ]);
         console.log('seed: Parties created...');
@@ -59,7 +59,7 @@ db.once('open', async () => {
                 { 
                     $push: { 
                         parties: partySeeds.filter((party) => 
-                            party.host.toString() === user._id.toString()
+                            party.host._id.toString() === user._id.toString()
                         ),
                         friends: userSeeds.filter((friend) => 
                             friend._id.toString() !== user._id.toString()
