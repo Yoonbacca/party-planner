@@ -27,3 +27,22 @@ export const ADD_USER = gql`
       }
   }
 `;
+
+export const ADD_PARTY = gql`
+  mutation addParty($partyText: String!) {
+    addParty(name: $name, location: $location, host: $host, description: $description, dateTime: $dateTime, guests: $guests) {
+    _id
+    name
+    description
+    dateTime
+    location
+    host {
+      _id
+      username
+    }
+    guests {
+      _id
+    }
+  }
+  }
+`;

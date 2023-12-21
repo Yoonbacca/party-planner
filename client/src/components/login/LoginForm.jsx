@@ -16,6 +16,7 @@ const LoginForm = ({ toggleLogin }) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+    console.log(formData)
   };
 
   const handleFormSubmit = async (event) => {
@@ -27,7 +28,7 @@ const LoginForm = ({ toggleLogin }) => {
       });
 
       const { token, user } = userLogin.data.login;
-      console.log(user);
+      console.log("Login form",user);
       Auth.login(token);
       
     } catch(err) {
@@ -42,7 +43,7 @@ const LoginForm = ({ toggleLogin }) => {
         A world of perfectly planned parties is at your fingertips.
       </p>
       <form onSubmit={handleFormSubmit}>
-        <Field inputType={"Username"} />
+        <Field inputType={"Email"} handleInputChange={handleInputChange} />
         <PassField isConfirm={false} handleInputChange={handleInputChange} />
         <SubmitButton isLogin={true} />
         <h2 className="text-2xl my-4">Don't have an account?</h2>
