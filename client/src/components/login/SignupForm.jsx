@@ -41,7 +41,6 @@ const SignupForm = ({ toggleLogin }) => {
       });
       
       const { token, user } = addedUser.data.addUser;
-      console.log(user);
       Auth.login(token);
 
     } catch(err) {
