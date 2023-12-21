@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_PARTY } from '../../utils/mutations'
-// import { FancyField } from './FancyField';
+import { Datepicker, LargeField } from 'flowbite-react';
 
 const PartyPlanner = ({ setPartyPlanning }) => {
     const [formData, setFormData] = useState({name: '', description: '', date: '', time: '', location: '', guestList: ''});
@@ -35,21 +35,18 @@ const PartyPlanner = ({ setPartyPlanning }) => {
         <h2 className="text-5xl mb-4">Party Planning</h2>
             <form onSubmit={handleFormSubmit}>
               <div className="mt-5 flex flex-col">
-                <h2 className="text-2xl mb-1">Party Name</h2>
-                <input className="flex-1 mb-5 text-base border text-black sm:text-lg" type="text" placeholder="Party Name" />
+                <h2 className="text-2xl mb-1">Name</h2>
+                <input className="flex-1 mb-5 text-base border text-black sm:text-lg" type="text" placeholder="Name" />
               </div>
               <div className="mt-5 flex flex-col">
-                <h2 className="text-2xl mb-1">Party Description</h2>
-                <input className="flex-1 mb-5 text-base border text-black sm:text-lg" type="text" placeholder="Party Description" />
+                <h2 className="text-2xl mb-1">Description</h2>
+                <input className="flex-1 mb-5 text-base border text-black sm:text-lg" type="text" placeholder="Description" />
               </div>              
               <div className="mt-5 flex flex-col">
-                <h2 className="text-2xl mb-1">Party Date</h2>
-                <input className="flex-1 mb-5 text-base border text-black sm:text-lg" type="text" placeholder="Party Name" />
-              </div>              
-              <div className="mt-5 flex flex-col">
-                <input className="flex-1 mb-5 text-base border text-black sm:text-lg" type="text" placeholder="Party Name" />
+                <h2 className="text-2xl mb-1">Date and Time</h2>
+                <Datepicker />
+
               </div>
-                
             </form>
         </div>
     </>
