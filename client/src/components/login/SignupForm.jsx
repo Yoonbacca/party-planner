@@ -53,7 +53,7 @@ const SignupForm = ({ toggleLogin }) => {
   }
 
   return (
-      <div className="w-full lg:w-1/2 py-16 px-12">
+    <div className="w-full lg:w-1/2 py-16 px-12">
       <h2  className="text-3xl mb-4">Sign up</h2>
       <p className="mb-4">
         Create your account. A world of perfectly planned parties is at your fingertips.
