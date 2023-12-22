@@ -20,7 +20,6 @@
     "react-google-recaptcha-v3": "^1.10.1",
     "react-icons": "^4.12.0",
     "react-router-dom": "^6.11.2",
-    "tailwind-datepicker-react": "^1.4.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
