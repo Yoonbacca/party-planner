@@ -4,9 +4,12 @@ import { GET_USER } from '../../utils/queries';
 import { ADD_PARTY } from '../../utils/mutations'
 import { Datepicker } from 'flowbite-react';
 import TimePicker from 'react-time-picker'
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
 
 const PartyPlanner = ({ setPartyPlanning }) => {
     const [formData, setFormData] = useState({name: '', description: '', date: '', time: '', location: '', guestList: ''});
+    const [value, onChange] = useState('10:00');
 
     const [addParty, {error}] = useMutation(ADD_PARTY);
   
@@ -54,8 +57,8 @@ const PartyPlanner = ({ setPartyPlanning }) => {
               <div className="mt-5 flex flex-col">
                 <h2 className="text-2xl mb-1">Date and Time</h2>
                 <Datepicker id="datepicker" name="date" minDate={new Date(Date.now())} onSelectedDateChanged={handleDateChange} />
-                <TimePicker name="time" onChange={handleInputChange} />
               </div>
+                <TimePicker name="time" onChange={handleInputChange} />
             </form>
         </div>
     </>
