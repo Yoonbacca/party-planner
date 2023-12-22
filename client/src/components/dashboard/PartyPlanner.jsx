@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { GET_USER } from '../../utils/queries';
 import { ADD_PARTY } from '../../utils/mutations'
 import { Datepicker } from 'flowbite-react';
+import TimePicker from 'react-time-picker'
 
 const PartyPlanner = ({ setPartyPlanning }) => {
     const [formData, setFormData] = useState({name: '', description: '', date: '', time: '', location: '', guestList: ''});
