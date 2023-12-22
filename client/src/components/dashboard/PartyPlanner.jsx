@@ -54,7 +54,7 @@ const PartyPlanner = ({ setPartyPlanning }) => {
               <div className="mt-5 flex flex-col">
                 <h2 className="text-2xl mb-1">Date and Time</h2>
                 <Datepicker id="datepicker" name="date" minDate={new Date(Date.now())} onSelectedDateChanged={handleDateChange} />
-
+                <TimePicker name="time" onChange={handleInputChange} />
               </div>
             </form>
         </div>
