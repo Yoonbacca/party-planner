@@ -1,18 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
+import { GET_USER } from '../../utils/queries';
 import { ADD_PARTY } from '../../utils/mutations'
-import { Datepicker, LargeField } from 'flowbite-react';
+import { Datepicker } from 'flowbite-react';
+import TimePicker from 'react-time-picker'
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
 
 const PartyPlanner = ({ setPartyPlanning }) => {
     const [formData, setFormData] = useState({name: '', description: '', date: '', time: '', location: '', guestList: ''});
+    const [value, onChange] = useState('10:00');
 
     const [addParty, {error}] = useMutation(ADD_PARTY);
   
     const handleInputChange = (event) => {
       const { name, value } = event.target;
       setFormData({ ...formData, [name]: value });
+      console.log(formData)
     };
-  
+
+    const handleDateChange = (event) => {
+      const selectedDate = new Date(event.toString()).toLocaleDateString('en-US');
+      setFormData({ ...formData, date: selectedDate });
+      console.log(formData)
+    };
+
     const handleFormSubmit = async (event) => {
       event.preventDefault();
   
@@ -32,21 +44,21 @@ const PartyPlanner = ({ setPartyPlanning }) => {
     return (
     <>
         <div className="flex flex-col mx-auto p-4 border bg-white border-neutral-300 rounded-lg shadow sm:p-8 ">
-        <h2 className="text-5xl mb-4">Party Planning</h2>
+        <h2 className="text-5xl mb-4">Party Planner</h2>
             <form onSubmit={handleFormSubmit}>
               <div className="mt-5 flex flex-col">
                 <h2 className="text-2xl mb-1">Name</h2>
-                <input className="flex-1 mb-5 text-base border text-black sm:text-lg" type="text" placeholder="Name" />
+                <input className="flex-1 mb-5 text-base border text-black sm:text-lg" type="text" name="name" placeholder="Name" onChange={handleInputChange} />
               </div>
               <div className="mt-5 flex flex-col">
                 <h2 className="text-2xl mb-1">Description</h2>
-                <input className="flex-1 mb-5 text-base border text-black sm:text-lg" type="text" placeholder="Description" />
+                <input className="flex-1 mb-5 text-base border text-black sm:text-lg" type="text" name="description" placeholder="Description" onChange={handleInputChange} />
               </div>              
               <div className="mt-5 flex flex-col">
                 <h2 className="text-2xl mb-1">Date and Time</h2>
-                <Datepicker />
-
+                <Datepicker id="datepicker" name="date" minDate={new Date(Date.now())} onSelectedDateChanged={handleDateChange} />
               </div>
+                <TimePicker name="time" onChange={handleInputChange} />
             </form>
         </div>
     </>
