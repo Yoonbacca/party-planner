@@ -21,10 +21,6 @@ const PartyPlanner = ({ setPartyPlanning }) => {
       console.log(formData)
     };
 
-      // const datepickerEl = document?.getElementById("datepicker");
-      // console.log(datepickerEl.value);
-
-
     const handleFormSubmit = async (event) => {
       event.preventDefault();
   
