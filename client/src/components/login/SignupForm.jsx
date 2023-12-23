@@ -15,11 +15,10 @@ const SignupForm = ({ toggleLogin }) => {
   const [addUser, {error}] = useMutation(ADD_USER);
 
   const recaptchaRef = React.createRef();
-  console.log(recaptchaRef.current);
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-    console.log(formData);
   };
   
   const handleFormSubmit = async (event) => {
