@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 
 const PartyPlanner = ({ setPartyPlanning }) => {
     const [formData, setFormData] = useState({name: '', description: '', date: '', time: '', location: '', guestList: ''});
-    const format = 'HH:mm:a';
+    const format = 'HH:mm';
     const [addParty, {error}] = useMutation(ADD_PARTY);
   
     const handleInputChange = (event) => {
@@ -56,7 +56,7 @@ const PartyPlanner = ({ setPartyPlanning }) => {
                 <h2 className="text-2xl mb-1">Date and Time</h2>
                 <div className="flex flex-row">
                   <Datepicker id="datepicker" name="date" minDate={new Date(Date.now())} onSelectedDateChanged={handleDateChange} />
-                  <TimePicker.RangePicker id="timepicker" name="time" minuteStep={15} defaultValue={dayjs('12:08', format)} format={format} />
+                  <TimePicker id="timepicker" name="time" minuteStep={15} defaultValue={dayjs('12:08', format)} format={format} use12Hours={true} />
                 </div>
               </div>
               
