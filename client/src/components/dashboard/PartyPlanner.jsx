@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { GET_USER } from '../../utils/queries';
 import { ADD_PARTY } from '../../utils/mutations'
-import { Datepicker } from 'flowbite-react';
-import { TimePicker } from 'antd';
+import { DatePicker, TimePicker } from 'antd';
 import dayjs from 'dayjs';
 
 const PartyPlanner = ({ setPartyPlanning }) => {
@@ -55,7 +54,6 @@ const PartyPlanner = ({ setPartyPlanning }) => {
               <div className="mt-5 flex flex-col">
                 <h2 className="text-2xl mb-1">Date and Time</h2>
                 <div className="flex flex-row">
-                  <Datepicker id="datepicker" name="date" minDate={new Date(Date.now())} onSelectedDateChanged={handleDateChange} />
                   <TimePicker id="timepicker" name="time" minuteStep={15} defaultValue={dayjs('12:08', format)} format={format} use12Hours={true} />
                 </div>
               </div>

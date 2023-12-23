@@ -1,5 +1,4 @@
 import ReCAPTCHA from "react-google-recaptcha";
-import { Modal } from 'flowbite-react';
 import PolicyModal from "./PolicyModal";
 
 const SubmitButton = ({ isLogin, recaptchaRef }) => {
