@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { GET_USER } from '../../utils/queries';
 import { ADD_PARTY } from '../../utils/mutations'
-import { DatePicker, TimePicker } from 'antd';
+import { DatePicker, TimePicker, Space } from 'antd';
 import dayjs from 'dayjs';
 
 const PartyPlanner = ({ setPartyPlanning }) => {
@@ -15,12 +15,14 @@ const PartyPlanner = ({ setPartyPlanning }) => {
       setFormData({ ...formData, [name]: value });
       console.log(formData)
     };
-
-    const handleDateChange = (event) => {
-      const selectedDate = new Date(event.toString()).toLocaleDateString('en-US');
-      setFormData({ ...formData, date: selectedDate });
-      console.log(formData)
+    const onChange = (date, dateString) => {
+      console.log(date, dateString);
     };
+    // const handleDateChange = (event) => {
+    //   const selectedDate = new Date(event.toString()).toLocaleDateString('en-US');
+    //   setFormData({ ...formData, date: selectedDate });
+    //   console.log(formData)
+    // };
 
     const handleFormSubmit = async (event) => {
       event.preventDefault();
@@ -54,7 +56,10 @@ const PartyPlanner = ({ setPartyPlanning }) => {
               <div className="mt-5 flex flex-col">
                 <h2 className="text-2xl mb-1">Date and Time</h2>
                 <div className="flex flex-row">
+                <Space direction="horizontal">
+                  <DatePicker onChange={onChange} />  
                   <TimePicker id="timepicker" name="time" minuteStep={15} defaultValue={dayjs('12:08', format)} format={format} use12Hours={true} />
+                </Space>
                 </div>
               </div>
               
