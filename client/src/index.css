@@ -7,3 +7,7 @@
     background-size: 150px;
     background-color: #FFFBDB;
 }
+
+button, [type='button'], [type='reset'], [type='submit'] {
+    background-color: blue;
+}
