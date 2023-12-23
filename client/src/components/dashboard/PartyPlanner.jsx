@@ -4,10 +4,11 @@ import { GET_USER } from '../../utils/queries';
 import { ADD_PARTY } from '../../utils/mutations'
 import { Datepicker } from 'flowbite-react';
 import { TimePicker } from 'antd';
+import dayjs from 'dayjs';
 
 const PartyPlanner = ({ setPartyPlanning }) => {
     const [formData, setFormData] = useState({name: '', description: '', date: '', time: '', location: '', guestList: ''});
-
+    const format = 'HH:mm:a';
     const [addParty, {error}] = useMutation(ADD_PARTY);
   
     const handleInputChange = (event) => {
@@ -55,11 +56,7 @@ const PartyPlanner = ({ setPartyPlanning }) => {
                 <h2 className="text-2xl mb-1">Date and Time</h2>
                 <div className="flex flex-row">
                   <Datepicker id="datepicker" name="date" minDate={new Date(Date.now())} onSelectedDateChanged={handleDateChange} />
-                  <div className="relative max-w-sm">
-                    <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                    </div>
-                    
-                  </div>
+                  <TimePicker.RangePicker id="timepicker" name="time" minuteStep={15} defaultValue={dayjs('12:08', format)} format={format} />
                 </div>
               </div>
               
