@@ -93,11 +93,22 @@ const PartyPlanner = ({ setPartyPlanning }) => {
         <TimePicker size={"large"} id="timepicker" name="time" minuteStep={15} defaultValue={dayjs('12:00 AM', format)} format={format} use12Hours={true} />
     </Form.Item>
     </Space>
+    <Form.Item
+      name="location"
+      rules={[
+        {
+          required: false,
+          message: 'Please input your location!',
+        },
+      ]}>
+        <Input.Search placeholder="input search text" onSearch={value => console.log(value)} enterButton />
+    </Form.Item>
     <Form.Item>
       <Button type="primary" htmlType="submit">
         Submit
       </Button>
     </Form.Item>
+    <h2 className="text-xl my-2">Location</h2>
   </Form>
         </div>
     </>
