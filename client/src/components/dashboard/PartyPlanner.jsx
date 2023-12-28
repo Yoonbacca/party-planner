@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import { useMutation } from '@apollo/client';
 import { GET_USER } from '../../utils/queries';
 import { ADD_PARTY } from '../../utils/mutations'
@@ -45,6 +46,10 @@ const PartyPlanner = ({ setPartyPlanning }) => {
         console.error(err)
       }
     }
+    const { isLoaded } = useLoadScript({
+      googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    });
+    const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
 
     return (
     <>
