@@ -93,6 +93,7 @@ const PartyPlanner = ({ setPartyPlanning }) => {
         <TimePicker size={"large"} id="timepicker" name="time" minuteStep={15} defaultValue={dayjs('12:00 AM', format)} format={format} use12Hours={true} />
     </Form.Item>
     </Space>
+    <h2 className="text-xl my-2">Location</h2>
     <Form.Item
       name="location"
       rules={[
@@ -108,7 +109,6 @@ const PartyPlanner = ({ setPartyPlanning }) => {
         Submit
       </Button>
     </Form.Item>
-    <h2 className="text-xl my-2">Location</h2>
   </Form>
         </div>
     </>
