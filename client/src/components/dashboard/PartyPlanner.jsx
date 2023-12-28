@@ -47,10 +47,6 @@ const PartyPlanner = ({ setPartyPlanning }) => {
       }
     }
 
-
-
-    const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
-
     return (
     <>
         <div className="flex flex-col mx-auto p-4 border bg-white border-neutral-300 rounded-lg shadow sm:p-8 ">
@@ -109,7 +105,7 @@ const PartyPlanner = ({ setPartyPlanning }) => {
   </Form>
 
         </div>
-      <MapBox />
+  <MapBox />
     </>
     )
 }
