@@ -1,10 +1,10 @@
 import ReCAPTCHA from "react-google-recaptcha";
-import { Modal } from 'flowbite-react';
 import PolicyModal from "./PolicyModal";
+
 
 const SubmitButton = ({ isLogin, recaptchaRef }) => {
     const buttonText = isLogin ? "Login" : "Sign up";
-    const siteKey = "6LcknDApAAAAAACF9x3Q7X1VMe4mWa2KWsJSAwbD";
+    const siteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
     
     function onChange(value) {
         const recaptchaValue = recaptchaRef.current.getValue();
