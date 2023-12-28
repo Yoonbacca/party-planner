@@ -1,14 +1,14 @@
 import { useState, useEffect, useMemo } from 'react';
-import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import { useMutation } from '@apollo/client';
 import { GET_USER } from '../../utils/queries';
 import { ADD_PARTY } from '../../utils/mutations'
 import { DatePicker, TimePicker, Space, Form, Input, Checkbox, Button } from 'antd';
 import dayjs from 'dayjs';
+import MapBox from './MapBox';
 
 const PartyPlanner = ({ setPartyPlanning }) => {
     const [formData, setFormData] = useState({name: '', description: '', date: '', time: '', location: '', guestList: ''});
-    const format = 'HH:mm A';
+    const format = 'h:mm A';
     const [addParty, {error}] = useMutation(ADD_PARTY);
   
     const onFinish = (values) => {
@@ -46,9 +46,9 @@ const PartyPlanner = ({ setPartyPlanning }) => {
         console.error(err)
       }
     }
-    const { isLoaded } = useLoadScript({
-      googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-    });
+
+
+
     const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
 
     return (
@@ -63,6 +63,7 @@ const PartyPlanner = ({ setPartyPlanning }) => {
         autoComplete="off"
         size="large"
       >
+        <h2 className="text-xl my-2">Name</h2>
     <Form.Item
       name="name"
       rules={[
@@ -72,9 +73,9 @@ const PartyPlanner = ({ setPartyPlanning }) => {
         },
       ]}
     >
-      <h2 className="text-xl my-2">Name</h2>
       <Input />
     </Form.Item>
+    <h2 className="text-xl my-2">Description</h2>
     <Form.Item
       name="description"
       rules={[
@@ -84,7 +85,6 @@ const PartyPlanner = ({ setPartyPlanning }) => {
         },
       ]}
     >
-      <h2 className="text-xl my-2">Description</h2>
       
       <Input.TextArea />
     </Form.Item>
@@ -92,30 +92,24 @@ const PartyPlanner = ({ setPartyPlanning }) => {
 
     <Space direction="horizontal">
     <Form.Item name="date">
-        <DatePicker size={"large"} defaultValue={dayjs().add(1, 'day')}  disabledDate={disabledDate} onChange={onChange} />  
+        <DatePicker size={"large"} initialValues={dayjs().add(1, 'day')}  disabledDate={disabledDate} onChange={onChange} />  
     </Form.Item>
     <Form.Item name="time">
-        <TimePicker size={"large"} id="timepicker" name="time" minuteStep={15} defaultValue={dayjs('12:00 AM', format)} format={format} use12Hours={true} />
+        <TimePicker size={"large"} id="timepicker" name="time" minuteStep={15} initialValues={dayjs('12:00 AM', format)} format={format} use12Hours={true} />
     </Form.Item>
     </Space>
     <h2 className="text-xl my-2">Location</h2>
-    <Form.Item
-      name="location"
-      rules={[
-        {
-          required: false,
-          message: 'Please input your location!',
-        },
-      ]}>
-        <Input.Search placeholder="input search text" onSearch={value => console.log(value)} enterButton />
-    </Form.Item>
+
+
     <Form.Item>
       <Button type="primary" htmlType="submit">
         Submit
       </Button>
     </Form.Item>
   </Form>
+
         </div>
+      <MapBox />
     </>
     )
 }

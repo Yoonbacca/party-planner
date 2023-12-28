@@ -17,3 +17,12 @@
     --tw-bg-opacity: 1;
     background-color: rgb(126 58 242 / var(--tw-bg-opacity));
 }
+.App {
+  height: 100vh;
+  width: 100vw;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
+}
